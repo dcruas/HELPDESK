@@ -1,0 +1,24 @@
+program Mdiapp;
+
+uses
+  Forms,
+  Login in 'Login.pas' {frmLogin},
+  ChildWin in 'ChildWin.pas' {MDIChild},
+  about in 'about.pas' {AboutBox},
+  dm in 'dm.pas' {helpdesk: TDataModule},
+  TelaInicial in 'TelaInicial.pas' {frmPrincipal},
+  EsqueciSenha in 'EsqueciSenha.pas' {frmEsqueci},
+  Chamados in 'Chamados.pas' {Form1};
+
+{$R *.RES}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TAboutBox, AboutBox);
+  Application.CreateForm(Thelpdesk, helpdesk);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmEsqueci, frmEsqueci);
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

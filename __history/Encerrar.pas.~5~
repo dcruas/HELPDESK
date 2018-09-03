@@ -1,0 +1,48 @@
+unit Encerrar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TfrmEncerrar = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    btnEncerrar: TButton;
+    txtMatricula: TEdit;
+    txtJustificativa: TEdit;
+    procedure FormShow(Sender: TObject);
+    procedure btnEncerrarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmEncerrar: TfrmEncerrar;
+
+implementation
+
+{$R *.dfm}
+
+uses Login, dm, Chamados;
+
+procedure TfrmEncerrar.btnEncerrarClick(Sender: TObject);
+begin
+helpdesk.queryFUNCIONARIO.SQL.Clear;
+   helpdesk.queryFUNCIONARIO.SQL.Add('UPDATE TB_CHAMADO SET DT_ENCERRAMENTO = getdate(), DS_JUSTIFICATIVA =:justificativa WHERE CD_CHAMADO = :codigo ');
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('justificativa').Value := txtJustificativa.Text;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('codigo').Value := frmChamados.codigochamado;
+   helpdesk.queryFUNCIONARIO.ExecSQL;
+   Self.Close;
+end;
+
+procedure TfrmEncerrar.FormShow(Sender: TObject);
+begin
+    txtMatricula.Text := frmLogin.matriculatecnico.ToString();
+end;
+
+end.

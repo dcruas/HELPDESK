@@ -1,0 +1,83 @@
+unit Funcionarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfrmFuncionarios = class(TForm)
+    gbpPesquisar: TGroupBox;
+    rdbProtocolo: TRadioButton;
+    rdbMatricula: TRadioButton;
+    txtPesquisar: TEdit;
+    btnPesquisar: TButton;
+    GroupBox2: TGroupBox;
+    DBGrid1: TDBGrid;
+    GroupBox4: TGroupBox;
+    rdbTipo: TRadioGroup;
+    rdbStatus: TRadioGroup;
+    txtRamal: TEdit;
+    txtNome: TEdit;
+    txtSenha: TEdit;
+    txtCPF: TEdit;
+    txtMatricula: TEdit;
+    txtCelular: TEdit;
+    Label1: TLabel;
+    lblNome: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    txtSala: TEdit;
+    Label8: TLabel;
+    Label9: TLabel;
+    txtAndar: TEdit;
+    txtDataAdmissao: TEdit;
+    Label10: TLabel;
+    txtEmail: TEdit;
+    btnNovo: TButton;
+    btnSalvar: TButton;
+    procedure btnPesquisarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmFuncionarios: TfrmFuncionarios;
+
+implementation
+
+{$R *.dfm}
+
+uses dm;
+
+procedure TfrmFuncionarios.btnPesquisarClick(Sender: TObject);
+begin
+
+if rdbMatricula.checked then
+begin
+          helpdesk.queryFUNCIONARIO.SQL.Clear;
+          helpdesk.queryFUNCIONARIO.SQL.Add('SELECT CD_FUNCIONARIO, NM_FUNCIONARIO, NR_ANDAR,NR_RAMAL, NR_CELULAR,NM_EMAIL, NR_SALA, DT_ADMISSAO, NR_MATRICULA, NR_CPF, CD_ACESSO, NR_SITUACAO FROM TB_FUNCIONARIO WHERE NR_MATRICULA = :matricula ORDER BY CD_FUNCIONARIO');
+          helpdesk.queryFUNCIONARIO.Parameters.ParamByName('matricula').Value := strtoint(txtPesquisar.Text);
+          helpdesk.queryFUNCIONARIO.Open;
+end
+else  if rdbProtocolo.checked  then
+begin
+          helpdesk.queryFUNCIONARIO.SQL.Clear;
+          helpdesk.queryFUNCIONARIO.SQL.Add('SELECT CD_FUNCIONARIO, NM_FUNCIONARIO, NR_ANDAR,NR_RAMAL, NR_CELULAR,NM_EMAIL, NR_SALA, DT_ADMISSAO, NR_MATRICULA, NR_CPF, CD_ACESSO, NR_SITUACAO FROM TB_FUNCIONARIO WHERE NM_FUNCIONARIO = %:nome% ORDER BY CD_FUNCIONARIO');
+          helpdesk.queryFUNCIONARIO.Parameters.ParamByName('nome').Value := txtPesquisar.Text;
+          helpdesk.queryFUNCIONARIO.Open;
+end
+else
+begin
+        ShowMessage('Você não escolheu nenhuma opção ou não colocou nenhum valor no campo de pesquisa');
+end;
+
+end;
+end.

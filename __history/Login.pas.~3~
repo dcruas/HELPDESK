@@ -1,0 +1,93 @@
+unit Login;
+
+interface
+
+uses Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms,
+  Vcl.Controls, Vcl.Menus, Vcl.StdCtrls, Vcl.Dialogs, Vcl.Buttons, Winapi.Messages,
+  Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.StdActns, Vcl.ActnList, Vcl.ToolWin,
+  Vcl.ImgList, Data.DB, Vcl.Mask, Vcl.DBCtrls, Data.Win.ADODB;
+
+type
+  TfrmLogin = class(TForm)
+    StatusBar: TStatusBar;
+    btnEntrar: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    txtMatricula: TEdit;
+    txtSenha: TEdit;
+    LinkLabel1: TLinkLabel;
+    procedure FileNew1Execute(Sender: TObject);
+    procedure HelpAbout1Execute(Sender: TObject);
+    procedure FileExit1Execute(Sender: TObject);
+    procedure btnEntrarClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure CreateMDIChild(const Name: string);
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLogin: TfrmLogin;
+
+implementation
+
+{$R *.dfm}
+
+uses CHILDWIN, About, dm, TelaInicial;
+
+procedure TfrmLogin.btnEntrarClick(Sender: TObject);
+begin
+ helpdesk.TB_FUNCIONARIO.Open;
+
+ if helpdesk.TB_FUNCIONARIO.Locate('NR_MATRICULA', txtMatricula.Text, [loCaseInsensitive ]) and
+  helpdesk.TB_FUNCIONARIO.Locate('NM_SENHA', txtSenha.Text, [loCaseInsensitive ]) then
+  begin
+
+  helpdesk.TB_FUNCIONARIO.Close();
+
+  frmPrincipal.Show;
+  Self.Hide;
+  end
+
+ else if (txtMatricula.Text = '') and (txtSenha.Text= '') then
+       begin
+
+         ShowMessage('Preencha os campos login e senha!');
+         txtMatricula.SetFocus;
+       end
+  else
+  begin
+
+         ShowMessage('Usuario ou senha inválidos!');
+         txtMatricula.Clear;
+         txtSenha.Clear;
+ end;
+end;
+
+procedure TfrmLogin.CreateMDIChild(const Name: string);
+var
+  Child: TMDIChild;
+begin
+  { create a new MDI child window }
+  Child := TMDIChild.Create(Application);
+  Child.Caption := Name;
+  if FileExists(Name) then Child.Memo1.Lines.LoadFromFile(Name);
+end;
+
+procedure TfrmLogin.FileNew1Execute(Sender: TObject);
+begin
+  CreateMDIChild('NONAME' + IntToStr(MDIChildCount + 1));
+end;
+
+procedure TfrmLogin.HelpAbout1Execute(Sender: TObject);
+begin
+  AboutBox.ShowModal;
+end;
+
+procedure TfrmLogin.FileExit1Execute(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

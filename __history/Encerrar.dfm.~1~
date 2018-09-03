@@ -1,0 +1,53 @@
+object frnEncerrar: TfrnEncerrar
+  Left = 0
+  Top = 0
+  Caption = 'HelpFast - Encerrar Chamado'
+  ClientHeight = 299
+  ClientWidth = 852
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 208
+    Top = 56
+    Width = 47
+    Height = 13
+    Caption = 'Matr'#237'cula:'
+  end
+  object Label2: TLabel
+    Left = 198
+    Top = 112
+    Width = 57
+    Height = 13
+    Caption = 'Justificativa'
+  end
+  object btnEncerrar: TButton
+    Left = 261
+    Top = 242
+    Width = 75
+    Height = 25
+    Caption = 'Encerrar'
+    TabOrder = 0
+  end
+  object txtMatricula: TEdit
+    Left = 261
+    Top = 53
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 1
+  end
+  object txtJustificativa: TEdit
+    Left = 261
+    Top = 109
+    Width = 196
+    Height = 116
+    TabOrder = 2
+  end
+end

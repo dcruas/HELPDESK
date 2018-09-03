@@ -1,0 +1,177 @@
+unit Funcionarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfrmFuncionarios = class(TForm)
+    gbpPesquisar: TGroupBox;
+    rdbProtocolo: TRadioButton;
+    rdbMatricula: TRadioButton;
+    txtPesquisar: TEdit;
+    btnPesquisar: TButton;
+    GroupBox2: TGroupBox;
+    DBGrid1: TDBGrid;
+    GroupBox4: TGroupBox;
+    rdbTipo: TRadioGroup;
+    rdbStatus: TRadioGroup;
+    txtRamal: TEdit;
+    txtNome: TEdit;
+    txtSenha: TEdit;
+    txtCPF: TEdit;
+    txtMatricula: TEdit;
+    txtCelular: TEdit;
+    Label1: TLabel;
+    lblNome: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    txtSala: TEdit;
+    Label8: TLabel;
+    Label9: TLabel;
+    txtAndar: TEdit;
+    txtDataAdmissao: TEdit;
+    Label10: TLabel;
+    txtEmail: TEdit;
+    btnNovo: TButton;
+    btnSalvar: TButton;
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmFuncionarios: TfrmFuncionarios;
+
+implementation
+
+{$R *.dfm}
+
+uses dm, TelaInicial;
+
+procedure TfrmFuncionarios.btnNovoClick(Sender: TObject);
+begin
+txtSenha.Enabled := true;
+txtEmail.Enabled := true;
+end;
+
+procedure TfrmFuncionarios.btnPesquisarClick(Sender: TObject);
+begin
+
+if rdbMatricula.checked then
+begin
+          helpdesk.queryFUNCIONARIO.SQL.Clear;
+          helpdesk.queryFUNCIONARIO.SQL.Add('SELECT CD_FUNCIONARIO, NM_FUNCIONARIO, NR_ANDAR,NR_RAMAL, NR_CELULAR,NM_EMAIL, NR_SALA, DT_ADMISSAO, NR_MATRICULA, NR_CPF, CD_ACESSO, NR_SITUACAO FROM TB_FUNCIONARIO WHERE NR_MATRICULA = :matricula ORDER BY CD_FUNCIONARIO');
+          helpdesk.queryFUNCIONARIO.Parameters.ParamByName('matricula').Value := strtoint(txtPesquisar.Text);
+          helpdesk.queryFUNCIONARIO.Open;
+end
+else  if rdbProtocolo.checked  then
+begin
+          helpdesk.queryFUNCIONARIO.SQL.Clear;
+          helpdesk.queryFUNCIONARIO.SQL.Add('SELECT CD_FUNCIONARIO, NM_FUNCIONARIO, NR_ANDAR,NR_RAMAL, NR_CELULAR,NM_EMAIL, NR_SALA, DT_ADMISSAO, NR_MATRICULA, NR_CPF, CD_ACESSO, NR_SITUACAO FROM TB_FUNCIONARIO WHERE NM_FUNCIONARIO = :nome ORDER BY CD_FUNCIONARIO');
+          helpdesk.queryFUNCIONARIO.Parameters.ParamByName('nome').Value := txtPesquisar.Text + '%';
+          helpdesk.queryFUNCIONARIO.Open;
+end
+else
+begin
+        ShowMessage('Você não escolheu nenhuma opção ou não colocou nenhum valor no campo de pesquisa');
+end;
+
+end;
+procedure TfrmFuncionarios.btnSalvarClick(Sender: TObject);
+var matricula:integer;
+begin
+if txtMatricula.Text = '' then
+begin
+   helpdesk.queryFUNCIONARIO.SQL.Clear;
+   helpdesk.queryFUNCIONARIO.SQL.Add('SELECT IDENT_CURRENT(''TB_FUNCIONARIO'') AS ID');
+   helpdesk.queryFUNCIONARIO.Open;
+   matricula := helpdesk.queryFUNCIONARIO.FieldByName('ID').AsInteger;
+   helpdesk.queryFUNCIONARIO.SQL.Clear;
+   helpdesk.queryFUNCIONARIO.SQL.Add('INSERT TB_FUNCIONARIO (NM_FUNCIONARIO, NR_ANDAR,NR_RAMAL,NR_CELULAR, NM_EMAIL, NR_SALA,DT_ADMISSAO,NR_MATRICULA, NR_CPF, CD_ACESSO, NR_SITUACAO,NM_SENHA) VALUES');
+   helpdesk.queryFUNCIONARIO.SQL.Add('(:nome, :andar, :ramal, :celular, :email, :sala, :dataadmissao, :matricula, :cpf, :codacesso, :nrsituacao, :senha)');
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('nome').Value := txtNome.Text;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('andar').Value := strtoint(txtAndar.Text);
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('ramal').Value := strtoint(txtRamal.Text);
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('celular').Value := strtoint(txtCelular.Text);
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('email').Value := txtEmail.Text;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('sala').Value := strtoint(txtSala.Text);
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('dataadmissao').Value := strtodatetime(txtDataAdmissao.Text);
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('matricula').Value := matricula+1+20000000;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('cpf').Value := txtCPF.Text;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('codacesso').Value := rdbTipo.ItemIndex+1;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('nrsituacao').Value := rdbStatus.ItemIndex+1;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('senha').Value := txtSenha.Text;
+end
+else
+begin
+   helpdesk.queryFUNCIONARIO.SQL.Clear;
+   helpdesk.queryFUNCIONARIO.SQL.Add('UPDATE TB_FUNCIONARIO SET NM_FUNCIONARIO = :nome, NR_ANDAR = :andar, NR_RAMAL = :ramal, NR_CELULAR= :celular, NR_SALA = :sala , DT_ADMISSAO = :dataadmissao, NR_CPF = :cpf, CD_ACESSO = :codacesso, NR_SITUACAO = :nrsituacao WHERE NR_MATRICULA = :matricula');
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('nome').Value := txtNome.Text;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('andar').Value := strtoint(txtAndar.Text);
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('ramal').Value := strtoint(txtRamal.Text);
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('celular').Value := strtoint(txtCelular.Text);
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('sala').Value := strtoint(txtSala.Text);
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('dataadmissao').Value := strtodatetime(txtDataAdmissao.Text);
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('matricula').Value := txtMatricula.Text;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('cpf').Value := txtCPF.Text;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('codacesso').Value := rdbTipo.ItemIndex+1;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('nrsituacao').Value := rdbStatus.ItemIndex+1;
+
+end;
+  helpdesk.queryFUNCIONARIO.ExecSQL;
+  txtNome.Text := '';
+  txtAndar.Text := '';
+  txtRamal.Text := '';
+  txtCelular.Text := '';
+  txtEmail.Text := '';
+  txtSala.Text :='';
+  txtDataAdmissao.Text := '';
+  txtMatricula.Text := '';
+  txtCPF.Text := '';
+  txtSenha.Enabled := true;
+  txtEmail.Enabled := true;
+  txtSenha.Text := '';
+end;
+
+procedure TfrmFuncionarios.DBGrid1DblClick(Sender: TObject);
+begin
+txtMatricula.Text := (DBGrid1.Fields[0].AsInteger+20000000).ToString();
+txtNome.Text := DBGrid1.Fields[1].AsString;
+txtAndar.Text := DBGrid1.Fields[2].AsString;
+txtRamal.Text := DBGrid1.Fields[3].AsString;
+txtCelular.Text := DBGrid1.Fields[4].AsString;
+txtEmail.Text := DBGrid1.Fields[5].AsString;
+txtSala.Text := DBGrid1.Fields[6].AsString;
+txtDataAdmissao.Text := DBGrid1.Fields[7].AsString;
+txtCPF.Text := DBGrid1.Fields[9].AsString;
+rdbTipo.ItemIndex  := DBGrid1.Fields[10].AsInteger-1;
+rdbStatus.ItemIndex  := DBGrid1.Fields[11].AsInteger-1;
+txtSenha.Enabled := false;
+txtEmail.Enabled := false;
+
+
+
+
+
+end;
+
+procedure TfrmFuncionarios.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+frmPrincipal.Show;
+Self.Hide;
+end;
+
+end.

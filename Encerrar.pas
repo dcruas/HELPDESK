@@ -1,0 +1,65 @@
+unit Encerrar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TfrmEncerrar = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    btnEncerrar: TButton;
+    txtMatricula: TEdit;
+    txtJustificativa: TEdit;
+    procedure FormShow(Sender: TObject);
+    procedure btnEncerrarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmEncerrar: TfrmEncerrar;
+
+implementation
+
+{$R *.dfm}
+
+uses Login, dm, Chamados;
+
+procedure TfrmEncerrar.btnEncerrarClick(Sender: TObject);
+var status:integer;
+begin
+   helpdesk.queryFUNCIONARIO.SQL.Clear;
+   helpdesk.queryFUNCIONARIO.SQL.Add('SELECT SUM(CASE WHEN getdate() > DT_ABERTURA AND CD_CHAMADO = :codigo THEN 1 ELSE 0 END) AS ATRASADO FROM TB_CHAMADO');
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('codigo').Value := frmChamados.codigochamado;
+   helpdesk.queryFUNCIONARIO.Open;
+   status := helpdesk.queryFUNCIONARIO.FieldByName('ATRASADO').AsInteger;
+   helpdesk.queryFUNCIONARIO.SQL.Clear;
+   helpdesk.queryFUNCIONARIO.SQL.Add('UPDATE TB_CHAMADO SET DT_ENCERRAMENTO = getdate(), DS_JUSTIFICATIVA =:justificativa, CD_TECNICO =:codtecnico, CD_STATUS =:status WHERE CD_CHAMADO = :codigo ');
+
+   if status = 1 then
+   begin
+      helpdesk.queryFUNCIONARIO.Parameters.ParamByName('status').Value := 4;
+   end
+   else
+   begin
+       helpdesk.queryFUNCIONARIO.Parameters.ParamByName('status').Value := 3;
+   end;
+
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('justificativa').Value := txtJustificativa.Text;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('codigo').Value := frmChamados.codigochamado;
+   helpdesk.queryFUNCIONARIO.Parameters.ParamByName('codtecnico').Value := frmLogin.matriculatecnico-20000000;
+   helpdesk.queryFUNCIONARIO.ExecSQL;
+   Self.Close;
+end;
+
+procedure TfrmEncerrar.FormShow(Sender: TObject);
+begin
+    txtMatricula.Text := frmLogin.matriculatecnico.ToString();
+end;
+
+end.

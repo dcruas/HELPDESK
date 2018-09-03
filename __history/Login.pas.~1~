@@ -1,0 +1,88 @@
+unit MAIN;
+
+interface
+
+uses Winapi.Windows, System.SysUtils, System.Classes, Vcl.Graphics, Vcl.Forms,
+  Vcl.Controls, Vcl.Menus, Vcl.StdCtrls, Vcl.Dialogs, Vcl.Buttons, Winapi.Messages,
+  Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.StdActns, Vcl.ActnList, Vcl.ToolWin,
+  Vcl.ImgList, Data.DB, Vcl.Mask, Vcl.DBCtrls, Data.Win.ADODB;
+
+type
+  TMainForm = class(TForm)
+    StatusBar: TStatusBar;
+    ADOConnection1: TADOConnection;
+    ADOTable1: TADOTable;
+    ADOTable1CD_FUNCIONARIO: TAutoIncField;
+    ADOTable1NM_FUNCIONARIO: TStringField;
+    ADOTable1NR_ANDAR: TIntegerField;
+    ADOTable1NR_RAMAL: TIntegerField;
+    ADOTable1NR_CELULAR: TIntegerField;
+    ADOTable1NM_EMAIL: TStringField;
+    ADOTable1NR_SALA: TIntegerField;
+    ADOTable1DT_ADMISSAO: TStringField;
+    ADOTable1NR_MATRICULA: TIntegerField;
+    ADOTable1NR_CPF: TStringField;
+    ADOTable1CD_ACESSO: TIntegerField;
+    ADOTable1NR_SITUACAO: TIntegerField;
+    ADOTable1NM_SENHA: TStringField;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    DataSource1: TDataSource;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    Label3: TLabel;
+    DBEdit3: TDBEdit;
+    Label4: TLabel;
+    DBEdit4: TDBEdit;
+    Label5: TLabel;
+    DBEdit5: TDBEdit;
+    Label6: TLabel;
+    DBEdit6: TDBEdit;
+    Label7: TLabel;
+    DBEdit7: TDBEdit;
+    Button1: TButton;
+    procedure FileNew1Execute(Sender: TObject);
+    procedure HelpAbout1Execute(Sender: TObject);
+    procedure FileExit1Execute(Sender: TObject);
+  private
+    { Private declarations }
+    procedure CreateMDIChild(const Name: string);
+  public
+    { Public declarations }
+  end;
+
+var
+  MainForm: TMainForm;
+
+implementation
+
+{$R *.dfm}
+
+uses CHILDWIN, About;
+
+procedure TMainForm.CreateMDIChild(const Name: string);
+var
+  Child: TMDIChild;
+begin
+  { create a new MDI child window }
+  Child := TMDIChild.Create(Application);
+  Child.Caption := Name;
+  if FileExists(Name) then Child.Memo1.Lines.LoadFromFile(Name);
+end;
+
+procedure TMainForm.FileNew1Execute(Sender: TObject);
+begin
+  CreateMDIChild('NONAME' + IntToStr(MDIChildCount + 1));
+end;
+
+procedure TMainForm.HelpAbout1Execute(Sender: TObject);
+begin
+  AboutBox.ShowModal;
+end;
+
+procedure TMainForm.FileExit1Execute(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

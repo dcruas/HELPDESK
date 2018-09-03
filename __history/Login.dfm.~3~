@@ -1,0 +1,81 @@
+object frmLogin: TfrmLogin
+  Left = 194
+  Top = 111
+  Caption = 'HelpFast - Login'
+  ClientHeight = 194
+  ClientWidth = 381
+  Color = clAppWorkSpace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clBlack
+  Font.Height = -11
+  Font.Name = 'Default'
+  Font.Style = []
+  FormStyle = fsMDIForm
+  OldCreateOrder = False
+  Position = poDefault
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 88
+    Top = 72
+    Width = 54
+    Height = 13
+    Caption = 'NM_SENHA'
+  end
+  object Label2: TLabel
+    Left = 64
+    Top = 40
+    Width = 78
+    Height = 13
+    Caption = 'NR_MATRICULA'
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Top = 177
+    Width = 381
+    Height = 17
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
+    AutoHint = True
+    Panels = <>
+    SimplePanel = True
+    ExplicitTop = 393
+    ExplicitWidth = 523
+  end
+  object btnEntrar: TButton
+    Left = 148
+    Top = 120
+    Width = 75
+    Height = 25
+    Caption = 'Entrar'
+    TabOrder = 1
+    OnClick = btnEntrarClick
+  end
+  object txtMatricula: TEdit
+    Left = 148
+    Top = 37
+    Width = 121
+    Height = 21
+    TabOrder = 2
+    Text = 'txtMatricula'
+  end
+  object txtSenha: TEdit
+    Left = 148
+    Top = 69
+    Width = 121
+    Height = 21
+    PasswordChar = '*'
+    TabOrder = 3
+    Text = 'Edit1'
+  end
+  object LinkLabel1: TLinkLabel
+    Left = 105
+    Top = 97
+    Width = 172
+    Height = 17
+    Caption = 'Esqueceu sua senha?? Clique Aqui!'
+    TabOrder = 4
+  end
+end

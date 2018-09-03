@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/09/01 01:21:19.000.319,=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas</Transaction>
+    <Transaction>2018/09/01 01:28:44.000.491,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\dm.pas</Transaction>
+    <Transaction>2018/09/01 01:28:44.000.491,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.dfm=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\dm.dfm</Transaction>
+    <Transaction>2018/09/01 01:38:11.000.407,=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas</Transaction>
+    <Transaction>2018/09/01 01:46:49.000.583,=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit2.pas</Transaction>
+    <Transaction>2018/09/01 02:19:11.000.972,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit2.dfm=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\EsqueciSenha.dfm</Transaction>
+    <Transaction>2018/09/01 02:19:11.000.972,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit2.pas=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\EsqueciSenha.pas</Transaction>
+    <Transaction>2018/09/01 02:19:38.000.920,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.dfm=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\TelaInicial.dfm</Transaction>
+    <Transaction>2018/09/01 02:19:38.000.920,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\TelaInicial.pas</Transaction>
+    <Transaction>2018/09/01 02:19:56.000.400,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Main.dfm=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Login.dfm</Transaction>
+    <Transaction>2018/09/01 02:19:56.000.400,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Main.pas=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Login.pas</Transaction>
+    <Transaction>2018/09/01 12:04:11.000.635,=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas</Transaction>
+    <Transaction>2018/09/01 12:31:49.000.856,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Chamados.pas=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas</Transaction>
+    <Transaction>2018/09/01 12:31:49.000.856,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Chamados.dfm=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.dfm</Transaction>
+    <Transaction>2018/09/02 12:55:29.000.731,=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas</Transaction>
+    <Transaction>2018/09/02 12:59:15.000.012,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.dfm=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Encerrar.dfm</Transaction>
+    <Transaction>2018/09/02 12:59:15.000.012,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Encerrar.pas</Transaction>
+    <Transaction>2018/09/02 17:02:03.275,=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas</Transaction>
+    <Transaction>2018/09/02 17:02:18.304,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Relatorios.pas=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas</Transaction>
+    <Transaction>2018/09/02 17:02:18.304,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Relatorios.dfm=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.dfm</Transaction>
+    <Transaction>2018/09/02 17:58:20.509,=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas</Transaction>
+    <Transaction>2018/09/02 18:30:33.101,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Funcionarios.dfm=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.dfm</Transaction>
+    <Transaction>2018/09/02 18:30:33.101,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Funcionarios.pas=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\Unit1.pas</Transaction>
+    <Transaction>2018/09/02 19:44:55.705,C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\HelpFast.dproj=C:\Users\danie\OneDrive\Documentos\Embarcadero\Studio\Projects\HELPDESK\MDIAPP.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

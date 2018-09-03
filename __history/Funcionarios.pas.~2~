@@ -1,0 +1,59 @@
+unit Funcionarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfrmFuncionarios = class(TForm)
+    gbpPesquisar: TGroupBox;
+    rdbProtocolo: TRadioButton;
+    rdbMatricula: TRadioButton;
+    txtPesquisar: TEdit;
+    btnPesquisar: TButton;
+    GroupBox2: TGroupBox;
+    DBGrid1: TDBGrid;
+    GroupBox4: TGroupBox;
+    rdbTipo: TRadioGroup;
+    rdbStatus: TRadioGroup;
+    txtRamal: TEdit;
+    txtNome: TEdit;
+    txtSenha: TEdit;
+    txtCPF: TEdit;
+    txtMatricula: TEdit;
+    txtCelular: TEdit;
+    Label1: TLabel;
+    lblNome: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    txtSala: TEdit;
+    Label8: TLabel;
+    Label9: TLabel;
+    txtAndar: TEdit;
+    txtDataAdmissao: TEdit;
+    Label10: TLabel;
+    txtEmail: TEdit;
+    btnNovo: TButton;
+    btnSalvar: TButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmFuncionarios: TfrmFuncionarios;
+
+implementation
+
+{$R *.dfm}
+
+uses dm;
+
+end.
